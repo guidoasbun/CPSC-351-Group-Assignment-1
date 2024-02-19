@@ -11,7 +11,7 @@ using namespace std;
 // Function declarations
 void displayMenu(const vector<string>& commands);
 bool isCommandSupported(const vector<string>& commandsList, const string& commandInput);
-DWORD WINAPI executeCommand(LPVOID lpParam);
+DWORD WINAPI executeCommand(LPVOID secondParameter);
 
 
 int main()
@@ -34,7 +34,7 @@ int main()
    
 
 
-
+        break;
     }
 
 }
