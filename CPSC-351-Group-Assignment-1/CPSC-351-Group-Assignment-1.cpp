@@ -57,7 +57,7 @@ bool isCommandSupported(const vector<string>& commandsList, const string& comman
 	return false;
 }
 
-// On chapter 4 of the book, it shows how to use the CreateThread function to create a new thread
+// On chapter 4 of the book, how to use the WINAPI
 // COMPLETE
 DWORD WINAPI executeCommand(LPVOID secondParameter)
 {
