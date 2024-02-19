@@ -2,19 +2,68 @@
 //
 
 #include <iostream>
+#include <windows.h>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Function declarations
+void displayMenu(const vector<string>& commands);
+bool isCommandSupported(const vector<string>& commandsList, const string& commandInput);
+DWORD WINAPI executeCommand(LPVOID lpParam);
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    // List of supported commands
+    // cosnt becasue it will not change
+    const vector<string> SUPPORTED_COMMANDS =
+    { "dir", "help", "vol", "path", "tasklist", "notepad", "echo", "color", "ping" };
+
+    while (true)
+    {
+        // Do stuff like initialize the input sring
+        // check if the input is "exit" or "quit" and break
+        //
+        
+        // if(isCommandSupported(*****))
+        // {
+   
+        // }
+   
+
+
+
+    }
+
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+// Function Definitions
+// TODO
+void displayMenu(const vector<string>& commands)
+{
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+
+}
+
+// TODO
+bool isCommandSupported(const vector<string>& commandsList, const string& commandInput)
+{
+
+
+
+	return false;
+}
+
+// On chapter 4 of the book, it shows how to use the CreateThread function to create a new thread
+// COMPLETE
+DWORD WINAPI executeCommand(LPVOID secondParameter)
+{
+    string command = *(string*)secondParameter;
+    system(command.c_str());
+    return 0;
+}
+
+
