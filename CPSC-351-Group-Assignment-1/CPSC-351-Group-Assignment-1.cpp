@@ -21,20 +21,33 @@ int main()
     const vector<string> SUPPORTED_COMMANDS =
     { "dir", "help", "vol", "path", "tasklist", "notepad", "echo", "color", "ping" };
 
+    cout << "Wellcom to myShell\n";
+
     while (true)
     {
+        // TODO
         // Do stuff like initialize the input sring
         // check if the input is "exit" or "quit" and break
-        //
         
-        // if(isCommandSupported(*****))
-        // {
-   
-        // }
-   
-
-
         break;
+
+        // TODO
+        // if statement that checks if the command is supported
+        // if it is, create a new thread to execute the command
+        // if not, display an error message, unsopported command...
+        // 
+        //   
+        //     HANDLE thread = CreateThread(NULL, 0, ExecuteCommand, (LPVOID)&input, 0, NULL);
+        //     if (thread) 
+        //     {
+        //       WaitForSingleObject(thread, INFINITE);
+        //       CloseHandle(thread);
+        //     }
+        //     else
+        //     {
+        //       message that it was not able to create a thread
+        //     }
+
     }
 
 }
