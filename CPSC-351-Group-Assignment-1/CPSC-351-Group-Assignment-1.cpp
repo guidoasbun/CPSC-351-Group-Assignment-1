@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <filesystem>
+#include <algorithm>
 
 
 using namespace std;
@@ -40,17 +41,9 @@ int main()
         fgets(userInput, sizeof(userInput), stdin);
         string stringInput(userInput);
 
-        if (isCommandSupported(SUPPORTED_COMMANDS, stringInput))
-        {
-            break;
+        if (stringInput ==  "exit" || stringInput == "quit") {
+            break;     
         }
-        else
-        {
-            cout << "we have some work to do.";
-        }
-
-        //test
-
 
         // TODO
         // if statement that checks if the command is supported
@@ -58,7 +51,7 @@ int main()
         // if not, display an error message, unsopported command...
         // 
         //   
-        //HANDLE thread = CreateThread(NULL, 0, executeCommand, (LPVOID)&input, 0, NULL);
+        //HANDLE thread = CreateThread(NULL, 0, ExecuteCommand, (LPVOID)&input, 0, NULL);
         //    if (thread) 
         //     {
         //       WaitForSingleObject(thread, INFINITE);
@@ -68,9 +61,19 @@ int main()
         //     {
         //       message that it was not able to create a thread
         //     }
-
+        if (isCommandSupported(SUPPORTED_COMMANDS, stringInput)) {
+            HANDLE thread = CreateThread(NULL, 0, executeCommand, (LPVOID)&input, 0, NULL;
+            if (thread) {
+                WaitForSingleObject(thread, INFINITE);
+                CloseHandle(thread);
+            } else {
+                cout << "Unable to create a thread.\n";    
+            }
+        } else {
+            cout << "Error, unsupported command.\n";
+        }
     }
-
+    return 0;
 }
 
 // Function Definitions
