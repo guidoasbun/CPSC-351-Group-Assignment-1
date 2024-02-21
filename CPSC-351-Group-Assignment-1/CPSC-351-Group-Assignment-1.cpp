@@ -58,7 +58,7 @@ int main()
         // if not, display an error message, unsopported command...
         // 
         //   
-        //HANDLE thread = CreateThread(NULL, 0, ExecuteCommand, (LPVOID)&input, 0, NULL);
+        //HANDLE thread = CreateThread(NULL, 0, executeCommand, (LPVOID)&input, 0, NULL);
         //    if (thread) 
         //     {
         //       WaitForSingleObject(thread, INFINITE);
