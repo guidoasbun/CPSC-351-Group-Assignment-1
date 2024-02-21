@@ -5,10 +5,16 @@
 #include <windows.h>
 #include <string>
 #include <vector>
+#include <filesystem>
+
 
 using namespace std;
+namespace fs = filesystem;
+
 
 // Function declarations
+string getInfo();
+string lowerCase(string UI);
 void displayMenu(const vector<string>& commands);
 bool isCommandSupported(const vector<string>& commandsList, const string& commandInput);
 DWORD WINAPI executeCommand(LPVOID secondParameter);
@@ -18,18 +24,31 @@ int main()
 {
     // List of supported commands
     // cosnt becasue it will not change
+    string UserInfo = getInfo();
     const vector<string> SUPPORTED_COMMANDS =
     { "dir", "help", "vol", "path", "tasklist", "notepad", "echo", "color", "ping" };
 
-    cout << "Wellcom to myShell\n";
+    cout << "Wellcome to myShell\n";
 
     while (true)
     {
         // TODO
         // Do stuff like initialize the input sring
         // check if the input is "exit" or "quit" and break
-        
-        break;
+        cout << UserInfo << " ";
+        char userInput[100];
+        fgets(userInput, sizeof(userInput), stdin);
+        string stringInput(userInput);
+
+        if (isCommandSupported(SUPPORTED_COMMANDS, stringInput))
+        {
+            break;
+        }
+        else
+        {
+            cout << "we have some work to do.";
+        }
+
 
         // TODO
         // if statement that checks if the command is supported
@@ -37,8 +56,8 @@ int main()
         // if not, display an error message, unsopported command...
         // 
         //   
-        //     HANDLE thread = CreateThread(NULL, 0, ExecuteCommand, (LPVOID)&input, 0, NULL);
-        //     if (thread) 
+        //HANDLE thread = CreateThread(NULL, 0, ExecuteCommand, (LPVOID)&input, 0, NULL);
+        //    if (thread) 
         //     {
         //       WaitForSingleObject(thread, INFINITE);
         //       CloseHandle(thread);
@@ -64,10 +83,27 @@ void displayMenu(const vector<string>& commands)
 // TODO
 bool isCommandSupported(const vector<string>& commandsList, const string& commandInput)
 {
+    string lowerCaseInput = lowerCase(commandInput);
+    for (const string& command : commandsList)
+    {
+        if (lowerCaseInput.find(command) == 0)
+            return true;
+    }
+    return false;
+}
 
+string getInfo()
+{
+    fs::path currentPath = fs::current_path();
+    string drive = currentPath.root_name().string();
+    string userName = currentPath.parent_path().filename().string();
+    return drive + "\\Users\\" + userName + ">";
+}
 
-
-	return false;
+string lowerCase(string UI)
+{
+    transform(UI.begin(), UI.end(), UI.begin(), ::tolower);
+    return UI;
 }
 
 // On chapter 4 of the book, how to use the WINAPI
