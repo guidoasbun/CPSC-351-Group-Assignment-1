@@ -29,7 +29,7 @@ int main()
     const vector<string> SUPPORTED_COMMANDS =
     { "dir", "help", "vol", "path", "tasklist", "notepad", "echo", "color", "ping" };
 
-    cout << "Wellcome to myShell\n";
+    displayMenu(SUPPORTED_COMMANDS);
 
     while (true)
     {
@@ -41,10 +41,21 @@ int main()
         fgets(userInput, sizeof(userInput), stdin);
         string stringInput(userInput);
 
-        if (stringInput ==  "exit" || stringInput == "quit") {
-            break;     
+        if (isCommandSupported(SUPPORTED_COMMANDS, stringInput)) {
+            HANDLE thread = CreateThread(NULL, 0, executeCommand, (LPVOID)&stringInput, 0, NULL);
+            if (thread) {
+                WaitForSingleObject(thread, INFINITE);
+                CloseHandle(thread);
+            }
+            else {
+                cout << "Unable to create a thread.\n";
+            }
         }
-
+        else if (isCommandSupported(SUPPORTED_COMMANDS, stringInput) == false) {
+            break;
+        } else {
+            cout << "Error, unsupported command.\n";
+        }
         // TODO
         // if statement that checks if the command is supported
         // if it is, create a new thread to execute the command
@@ -61,18 +72,8 @@ int main()
         //     {
         //       message that it was not able to create a thread
         //     }
-        if (isCommandSupported(SUPPORTED_COMMANDS, stringInput)) {
-            HANDLE thread = CreateThread(NULL, 0, executeCommand, (LPVOID)&input, 0, NULL;
-            if (thread) {
-                WaitForSingleObject(thread, INFINITE);
-                CloseHandle(thread);
-            } else {
-                cout << "Unable to create a thread.\n";    
-            }
-        } else {
-            cout << "Error, unsupported command.\n";
-        }
     }
+    cout << "Program has been terminated.\n";
     return 0;
 }
 
@@ -80,7 +81,17 @@ int main()
 // TODO
 void displayMenu(const vector<string>& commands)
 {
-
+    cout << "Wellcome to myShell\n available commands:\n";
+    for (size_t i = 0; i < commands.size(); ++i) {
+        cout << i + 1;
+        int dots = 25 - to_string(i + 1).length();
+        
+        for (int x = 0; x < dots; ++x) {
+            cout << ".";
+        }
+        
+        cout << " " << commands[i] << endl;
+    }
 
 
 }
@@ -93,6 +104,9 @@ bool isCommandSupported(const vector<string>& commandsList, const string& comman
     {
         if (lowerCaseInput.find(command) == 0)
             return true;
+        else if (lowerCaseInput == "exit" || lowerCaseInput == "quit") {
+            return false;
+        }
     }
     return false;
 }
