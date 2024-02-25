@@ -1,5 +1,13 @@
-// CPSC-351-Group-Assignment-1.cpp :
-//  This file contains the 'main' function. Program execution begins and ends there.
+// ConsoleApplication1.cpp : Simple Command Line Interpreter.
+// Class: CPSC 351-09 22045
+// Group: 1
+// Members:
+//      - Alex Le
+//      - Conner Robbins
+//      - Harry Derderian
+//      - Guido Asbun
+
+
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -111,8 +119,6 @@ string lowerCase(string UI)
     return UI;
 }
 
-// On chapter 4 of the book, how to use the WINAPI
-// COMPLETE
 DWORD WINAPI executeCommand(LPVOID secondParameter)
 {
     string command = *(string*)secondParameter;
