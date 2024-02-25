@@ -9,6 +9,9 @@
 | Harry Derderian | [GitHub](https://github.com/HarryDerderian) |
 | Guido Asbun     | [GitHub](https://github.com/guidoasbun)     |
 
+### GitHub Repo Link
+https://github.com/guidoasbun/CPSC-351-Group-Assignment-1 
+
 ### Description
 
 - This application implements an interactive shell in which users can execute commands.
